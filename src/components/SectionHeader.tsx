@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
   action: {
-    color: colors.accent,
+    color: colors.accentStrong,
     fontSize: 14,
     fontWeight: "600"
   }

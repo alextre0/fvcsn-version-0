@@ -6,6 +6,7 @@ import { colors } from "../theme/colors";
 import { featuredGames, latestScores } from "../data/mock";
 import Card from "../components/Card";
 import SectionHeader from "../components/SectionHeader";
+import StatusPill from "../components/StatusPill";
 
 type ScreenRouteProp = RouteProp<RootStackParamList, "SportDetail">;
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -25,7 +26,10 @@ export default function SportDetailScreen() {
       <View style={styles.stack}>
         {featuredGames.map((game) => (
           <Card key={game.id} style={styles.card}>
-            <Text style={styles.cardTitle}>{game.title}</Text>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardTitle}>{game.title}</Text>
+              <StatusPill label={game.status} tone="warning" />
+            </View>
             <Text style={styles.cardMeta}>{game.time}</Text>
             <Text style={styles.cardMeta}>{game.location}</Text>
             <Pressable
@@ -92,6 +96,11 @@ const styles = StyleSheet.create({
   },
   card: {
     gap: 6
+  },
+  cardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   cardTitle: {
     color: colors.textPrimary,
