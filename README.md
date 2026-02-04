@@ -1,7 +1,7 @@
 # fvcsn-version-0 
 # FVCSN (Fox Valley Conference Sports Network)
 
-Modern, minimal mobile app concept for FVC sports coverage. Built with React Native + Expo.
+Modern, broadcast-style mobile + web app concept for FVC sports coverage. Built with React Native + Expo.
 
 ## Highlights
 - Dark-mode default with orange accents.
@@ -15,6 +15,13 @@ Modern, minimal mobile app concept for FVC sports coverage. Built with React Nat
 npm install
 npm run start
 ```
+
+## Run on the Web
+```bash
+npm run web
+```
+
+Open the Expo web URL shown in the terminal to view FVCSN in your browser.
 
 ## Backend
 Update `src/services/backend.ts` to configure Firebase or Supabase collections and keys.

@@ -3,9 +3,10 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
-import { sports } from "../data/mock";
+import { basketballTeams, sports } from "../data/mock";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
+import StatusPill from "../components/StatusPill";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -22,8 +23,13 @@ export default function SportsScreen() {
             onPress={() => navigation.navigate("SportDetail", { sportId: sport.id })}
           >
             <Card style={styles.card}>
-              <Text style={styles.name}>{sport.name}</Text>
-              <Text style={styles.meta}>Schedule • Scores • Standings</Text>
+              <View style={styles.cardHeader}>
+                <Text style={styles.name}>{sport.name}</Text>
+                <StatusPill label={sport.status} tone={sport.status === "Off-season" ? "neutral" : "success"} />
+              </View>
+              <Text style={styles.meta}>
+                {sport.season} season • {basketballTeams.length} varsity rosters
+              </Text>
             </Card>
           </Pressable>
         ))}
@@ -46,6 +52,11 @@ const styles = StyleSheet.create({
   },
   card: {
     gap: 6
+  },
+  cardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   name: {
     color: colors.textPrimary,

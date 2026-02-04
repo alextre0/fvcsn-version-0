@@ -3,6 +3,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
 import Card from "../components/Card";
+import StatusPill from "../components/StatusPill";
 
 type ScreenRouteProp = RouteProp<RootStackParamList, "Game">;
 
@@ -12,7 +13,10 @@ export default function GameScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Card style={styles.header}>
-        <Text style={styles.title}>Game Center</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.title}>Game Center</Text>
+          <StatusPill label="Final" tone="success" />
+        </View>
         <Text style={styles.subtitle}>Game ID: {route.params.gameId}</Text>
         <View style={styles.scoreRow}>
           <Text style={styles.team}>Appleton North</Text>
@@ -33,7 +37,10 @@ export default function GameScreen() {
       </Card>
 
       <Card style={styles.summaryCard}>
-        <Text style={styles.sectionTitle}>Live Updates</Text>
+        <View style={styles.summaryHeader}>
+          <Text style={styles.sectionTitle}>Live Updates</Text>
+          <StatusPill label="Play by play" tone="info" />
+        </View>
         <View style={styles.updateRow}>
           <Text style={styles.updateTime}>Q4 2:11</Text>
           <Text style={styles.updateText}>Touchdown Neenah to take the lead.</Text>
@@ -59,6 +66,11 @@ const styles = StyleSheet.create({
   },
   header: {
     gap: 8
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   title: {
     color: colors.textPrimary,
@@ -88,6 +100,11 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     gap: 10
+  },
+  summaryHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   sectionTitle: {
     color: colors.textPrimary,
