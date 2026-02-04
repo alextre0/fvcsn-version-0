@@ -55,6 +55,462 @@ export const schools = [
   }
 ];
 
+export const standings = [
+  {
+    id: "cary-grove",
+    name: "Cary-Grove",
+    conference: "11-1",
+    conferencePct: "0.917",
+    conferencePF: 675,
+    conferencePA: 538,
+    overall: "21-3",
+    overallPct: "0.875",
+    overallPF: 1397,
+    overallPA: 1108,
+    streak: "1W"
+  },
+  {
+    id: "burlington-central",
+    name: "Burlington Central",
+    conference: "10-2",
+    conferencePct: "0.833",
+    conferencePF: 683,
+    conferencePA: 578,
+    overall: "15-7",
+    overallPct: "0.682",
+    overallPF: 1235,
+    overallPA: 1102,
+    streak: "9W"
+  },
+  {
+    id: "crystal-lake-south",
+    name: "Crystal Lake South",
+    conference: "9-3",
+    conferencePct: "0.750",
+    conferencePF: 723,
+    conferencePA: 605,
+    overall: "18-7",
+    overallPct: "0.720",
+    overallPF: 1507,
+    overallPA: 1282,
+    streak: "3W"
+  },
+  {
+    id: "mchenry",
+    name: "McHenry",
+    conference: "7-5",
+    conferencePct: "0.583",
+    conferencePF: 637,
+    conferencePA: 616,
+    overall: "16-9",
+    overallPct: "0.640",
+    overallPF: 1378,
+    overallPA: 1236,
+    streak: "1L"
+  },
+  {
+    id: "jacobs",
+    name: "Jacobs",
+    conference: "6-6",
+    conferencePct: "0.500",
+    conferencePF: 575,
+    conferencePA: 612,
+    overall: "13-10",
+    overallPct: "0.565",
+    overallPF: 1173,
+    overallPA: 1176,
+    streak: "3W"
+  },
+  {
+    id: "prairie-ridge",
+    name: "Prairie Ridge",
+    conference: "5-7",
+    conferencePct: "0.417",
+    conferencePF: 504,
+    conferencePA: 550,
+    overall: "5-18",
+    overallPct: "0.217",
+    overallPF: 1020,
+    overallPA: 1188,
+    streak: "4L"
+  },
+  {
+    id: "huntley",
+    name: "Huntley",
+    conference: "5-7",
+    conferencePct: "0.417",
+    conferencePF: 586,
+    conferencePA: 621,
+    overall: "8-16",
+    overallPct: "0.333",
+    overallPF: 1242,
+    overallPA: 1319,
+    streak: "2L"
+  },
+  {
+    id: "crystal-lake-central",
+    name: "Crystal Lake Central",
+    conference: "4-8",
+    conferencePct: "0.333",
+    conferencePF: 594,
+    conferencePA: 656,
+    overall: "15-9",
+    overallPct: "0.625",
+    overallPF: 1335,
+    overallPA: 1158,
+    streak: "2L"
+  },
+  {
+    id: "hampshire",
+    name: "Hampshire",
+    conference: "2-10",
+    conferencePct: "0.167",
+    conferencePF: 530,
+    conferencePA: 616,
+    overall: "7-17",
+    overallPct: "0.292",
+    overallPF: 1105,
+    overallPA: 1153,
+    streak: "2L"
+  },
+  {
+    id: "dundee-crown",
+    name: "Dundee-Crown",
+    conference: "1-11",
+    conferencePct: "0.083",
+    conferencePF: 478,
+    conferencePA: 593,
+    overall: "4-16",
+    overallPct: "0.200",
+    overallPF: 890,
+    overallPA: 1018,
+    streak: "1L"
+  }
+];
+
+export const scheduleGames = [
+  {
+    id: "game-0203-1",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Huntley",
+    away: "Cary Grove",
+    conference: true
+  },
+  {
+    id: "game-0203-2",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Burlington Central",
+    away: "Crystal Lake South",
+    conference: true
+  },
+  {
+    id: "game-0203-3",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Crystal Lake Central",
+    away: "Crystal Lake South",
+    conference: true
+  },
+  {
+    id: "game-0203-4",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Prairie Ridge",
+    away: "McHenry",
+    conference: true
+  },
+  {
+    id: "game-0203-5",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Jacobs",
+    away: "Dundee-Crown",
+    conference: true
+  },
+  {
+    id: "game-0203-6",
+    date: "2/3",
+    time: "7:00pm",
+    home: "Hampshire",
+    away: "Crystal Lake Central",
+    conference: true
+  },
+  {
+    id: "game-0206-1",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Crystal Lake Central",
+    away: "Cary Grove",
+    conference: true
+  },
+  {
+    id: "game-0206-2",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Burlington Central",
+    away: "Cary Grove",
+    conference: true
+  },
+  {
+    id: "game-0206-3",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Crystal Lake South",
+    away: "Hampshire",
+    conference: true
+  },
+  {
+    id: "game-0206-4",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Jacobs",
+    away: "McHenry",
+    conference: true
+  },
+  {
+    id: "game-0206-5",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Prairie Ridge",
+    away: "Crystal Lake Central",
+    conference: true
+  },
+  {
+    id: "game-0206-6",
+    date: "2/6",
+    time: "7:30pm",
+    home: "Huntley",
+    away: "Dundee-Crown",
+    conference: true
+  },
+  {
+    id: "game-0207-1",
+    date: "2/7",
+    time: "2:00pm",
+    home: "Cary Grove",
+    away: "Palatine",
+    conference: false
+  },
+  {
+    id: "game-0207-2",
+    date: "2/7",
+    time: "5:30pm",
+    home: "Neuqua Valley",
+    away: "Burlington Central",
+    conference: false
+  },
+  {
+    id: "game-0207-3",
+    date: "2/7",
+    time: "2:00pm",
+    home: "Jacobs",
+    away: "Mundelein",
+    conference: false
+  },
+  {
+    id: "game-0207-4",
+    date: "2/7",
+    time: "12:00pm",
+    home: "Crystal Lake Central",
+    away: "West Chicago",
+    conference: false
+  },
+  {
+    id: "game-0210-1",
+    date: "2/10",
+    time: "7:00pm",
+    home: "Cary Grove",
+    away: "Hampshire",
+    conference: true
+  },
+  {
+    id: "game-0210-2",
+    date: "2/10",
+    time: "7:00pm",
+    home: "Dundee-Crown",
+    away: "Burlington Central",
+    conference: true
+  },
+  {
+    id: "game-0210-3",
+    date: "2/10",
+    time: "7:00pm",
+    home: "Crystal Lake South",
+    away: "Prairie Ridge",
+    conference: true
+  },
+  {
+    id: "game-0210-4",
+    date: "2/10",
+    time: "7:00pm",
+    home: "Crystal Lake Central",
+    away: "McHenry",
+    conference: true
+  },
+  {
+    id: "game-0210-5",
+    date: "2/10",
+    time: "7:00pm",
+    home: "Huntley",
+    away: "Jacobs",
+    conference: true
+  },
+  {
+    id: "game-0213-1",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Cary Grove",
+    away: "Crystal Lake Central",
+    conference: true
+  },
+  {
+    id: "game-0213-2",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Burlington Central",
+    away: "Hampshire",
+    conference: true
+  },
+  {
+    id: "game-0213-3",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Jacobs",
+    away: "Crystal Lake South",
+    conference: true
+  },
+  {
+    id: "game-0213-4",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Dundee-Crown",
+    away: "McHenry",
+    conference: true
+  },
+  {
+    id: "game-0213-5",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Huntley",
+    away: "Prairie Ridge",
+    conference: true
+  },
+  {
+    id: "game-0213-6",
+    date: "2/13",
+    time: "7:30pm",
+    home: "Crystal Lake Central",
+    away: "Hampshire",
+    conference: true
+  },
+  {
+    id: "game-0214-1",
+    date: "2/14",
+    time: "4:00pm",
+    home: "Burlington Central",
+    away: "Geneva",
+    conference: false
+  },
+  {
+    id: "game-0216-1",
+    date: "2/16",
+    time: "7:00pm",
+    home: "Carmel",
+    away: "Prairie Ridge",
+    conference: false
+  },
+  {
+    id: "game-0217-1",
+    date: "2/17",
+    time: "7:00pm",
+    home: "McHenry",
+    away: "Cary Grove",
+    conference: true
+  },
+  {
+    id: "game-0217-2",
+    date: "2/17",
+    time: "7:00pm",
+    home: "Jacobs",
+    away: "Burlington Central",
+    conference: true
+  },
+  {
+    id: "game-0217-3",
+    date: "2/17",
+    time: "7:00pm",
+    home: "Crystal Lake Central",
+    away: "Crystal Lake South",
+    conference: true
+  },
+  {
+    id: "game-0217-4",
+    date: "2/17",
+    time: "7:00pm",
+    home: "Dundee-Crown",
+    away: "Prairie Ridge",
+    conference: true
+  },
+  {
+    id: "game-0217-5",
+    date: "2/17",
+    time: "7:00pm",
+    home: "Hampshire",
+    away: "Huntley",
+    conference: true
+  },
+  {
+    id: "game-0219-1",
+    date: "2/19",
+    time: "7:00pm",
+    home: "Jacobs",
+    away: "Crystal Lake Central",
+    conference: true
+  },
+  {
+    id: "game-0220-1",
+    date: "2/20",
+    time: "7:00pm",
+    home: "Cary Grove",
+    away: "Prairie Ridge",
+    conference: true
+  },
+  {
+    id: "game-0220-2",
+    date: "2/20",
+    time: "7:00pm",
+    home: "Burlington Central",
+    away: "Huntley",
+    conference: true
+  },
+  {
+    id: "game-0220-3",
+    date: "2/20",
+    time: "7:00pm",
+    home: "McHenry",
+    away: "Crystal Lake South",
+    conference: true
+  },
+  {
+    id: "game-0220-4",
+    date: "2/20",
+    time: "7:00pm",
+    home: "Crystal Lake Central",
+    away: "Huntley",
+    conference: true
+  },
+  {
+    id: "game-0220-5",
+    date: "2/20",
+    time: "7:00pm",
+    home: "Hampshire",
+    away: "Dundee-Crown",
+    conference: true
+  }
+];
+
 export const latestScores = [
   {
     id: "score-1",
@@ -173,7 +629,7 @@ export const basketballTeams = [
   {
     id: "prairie-ridge",
     name: "Prairie Ridge",
-    record: "8-2",
+    record: "5-18",
     roster: [
       { number: "1", name: "Luke Vanderwiel", grade: "Sr.", position: "-", height: "-", weight: "-" },
       { number: "2", name: "Bryce Kachiroubas", grade: "Sr.", position: "-", height: "-", weight: "-" },
@@ -195,7 +651,7 @@ export const basketballTeams = [
   {
     id: "cary-grove",
     name: "Cary Grove",
-    record: "7-3",
+    record: "21-3",
     roster: [
       { number: "0", name: "Brandon Freund", grade: "Sr.", position: "SF", height: "-", weight: "-" },
       { number: "2", name: "Aj Berndt", grade: "Sr.", position: "PG", height: "-", weight: "-" },
@@ -211,7 +667,7 @@ export const basketballTeams = [
   {
     id: "burlington-central",
     name: "Burlington Central",
-    record: "6-4",
+    record: "15-7",
     roster: [
       { number: "0", name: "Patrick Magan", grade: "Jr.", position: "F", height: "6'6\"", weight: "185 lbs" },
       { number: "1", name: "Brady Andersen", grade: "Sr.", position: "G", height: "5'10\"", weight: "155 lbs" },
@@ -231,7 +687,7 @@ export const basketballTeams = [
   {
     id: "crystal-lake-south",
     name: "Crystal Lake South",
-    record: "5-5",
+    record: "18-7",
     roster: [
       { number: "1", name: "Noah Cook", grade: "Jr.", position: "SF", height: "-", weight: "-" },
       { number: "3", name: "Nick Stowasser", grade: "Jr.", position: "-", height: "6'4\"", weight: "180 lbs" },
@@ -248,7 +704,7 @@ export const basketballTeams = [
   {
     id: "mchenry",
     name: "McHenry",
-    record: "6-4",
+    record: "16-9",
     roster: [
       { number: "1", name: "Henry Collette", grade: "Jr.", position: "G", height: "5'8\"", weight: "140 lbs" },
       { number: "2", name: "Dayton Warren", grade: "Sr.", position: "G", height: "6'2\"", weight: "165 lbs" },
@@ -271,7 +727,7 @@ export const basketballTeams = [
   {
     id: "jacobs",
     name: "Jacobs",
-    record: "7-3",
+    record: "13-10",
     roster: [
       { number: "0", name: "Samson Averehi", grade: "Sr.", position: "F", height: "6'4\"", weight: "205 lbs" },
       { number: "1", name: "Jack Magee", grade: "Sr.", position: "G", height: "6'0\"", weight: "170 lbs" },
@@ -294,7 +750,7 @@ export const basketballTeams = [
   {
     id: "huntley",
     name: "Huntley",
-    record: "5-4",
+    record: "8-16",
     roster: [
       { number: "1", name: "Nolan Reynolds", grade: "Jr.", position: "-", height: "-", weight: "-" },
       { number: "2", name: "Dominic Schnetter", grade: "Sr.", position: "-", height: "-", weight: "-" },
@@ -315,7 +771,7 @@ export const basketballTeams = [
   {
     id: "crystal-lake-central",
     name: "Crystal Lake Central",
-    record: "6-5",
+    record: "15-9",
     roster: [
       { number: "0", name: "Avery Lee", grade: "Sr.", position: "G, F", height: "6'3\"", weight: "-" },
       { number: "1", name: "Sonny Shanahan", grade: "Jr.", position: "G", height: "6'1\"", weight: "-" },
@@ -338,7 +794,7 @@ export const basketballTeams = [
   {
     id: "hampshire",
     name: "Hampshire",
-    record: "4-6",
+    record: "7-17",
     roster: [
       { number: "1", name: "Bradley Boyd", grade: "Jr.", position: "-", height: "-", weight: "-" },
       { number: "2", name: "Cole Harkin", grade: "Sr.", position: "-", height: "5'6\"", weight: "125 lbs" },
@@ -358,7 +814,7 @@ export const basketballTeams = [
   {
     id: "dundee-crown",
     name: "Dundee-Crown",
-    record: "3-7",
+    record: "4-16",
     roster: [
       { number: "1", name: "Kadin Malone", grade: "Sr.", position: "-", height: "-", weight: "-" },
       { number: "2", name: "Shane Demarsh", grade: "Jr.", position: "-", height: "-", weight: "-" },

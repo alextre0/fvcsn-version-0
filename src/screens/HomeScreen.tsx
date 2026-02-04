@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
+import { useMemo, useState } from "react";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
 import {
@@ -10,7 +11,9 @@ import {
   headlines,
   latestScores,
   liveNow,
-  quickActions
+  quickActions,
+  scheduleGames,
+  standings
 } from "../data/mock";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
@@ -20,9 +23,18 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<NavigationProp>();
-  const getWins = (record: string) => Number(record.split("-")[0]) || 0;
-  const standings = [...basketballTeams].sort((a, b) => getWins(b.record) - getWins(a.record));
+  const [selectedDate, setSelectedDate] = useState("2/3");
   const formatDetails = (details: string[]) => details.filter((detail) => detail && detail !== "-").join(" • ");
+  const scheduleDays = useMemo(() => {
+    const dates = Array.from(new Set(scheduleGames.map((game) => game.date)));
+    return dates.sort((a, b) => {
+      const [aMonth, aDay] = a.split("/").map(Number);
+      const [bMonth, bDay] = b.split("/").map(Number);
+      return aMonth === bMonth ? aDay - bDay : aMonth - bMonth;
+    });
+  }, [scheduleGames]);
+  const activeDate = scheduleDays.includes(selectedDate) ? selectedDate : scheduleDays[0];
+  const dailyGames = scheduleGames.filter((game) => game.date === activeDate);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -50,6 +62,36 @@ export default function HomeScreen() {
           </Pressable>
         </View>
       </LinearGradient>
+
+      <SectionHeader title="Today • Feb 3" actionLabel={`${dailyGames.length} games`} />
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.daySelector}>
+        {scheduleDays.map((date) => (
+          <Pressable
+            key={date}
+            style={[styles.dayChip, date === activeDate ? styles.dayChipActive : null]}
+            onPress={() => setSelectedDate(date)}
+          >
+            <Text style={[styles.dayChipText, date === activeDate ? styles.dayChipTextActive : null]}>
+              {date}
+            </Text>
+          </Pressable>
+        ))}
+      </ScrollView>
+      <View style={styles.cardStack}>
+        {dailyGames.map((game) => (
+          <Card key={game.id} style={styles.scheduleCard}>
+            <View style={styles.scheduleHeader}>
+              <Text style={styles.scheduleTime}>{game.time}</Text>
+              <StatusPill label={game.conference ? "Conference" : "Non-conf"} tone="info" />
+            </View>
+            <Text style={styles.scheduleMatchup}>{game.away}</Text>
+            <Text style={styles.scheduleMatchupSecondary}>at {game.home}</Text>
+            <Pressable style={styles.inlineButton} onPress={() => navigation.navigate("Game", { gameId: game.id })}>
+              <Text style={styles.inlineButtonText}>Preview Game</Text>
+            </Pressable>
+          </Card>
+        ))}
+      </View>
 
       <SectionHeader title="Scoreboard" actionLabel="View all" />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.ticker}>
@@ -137,9 +179,11 @@ export default function HomeScreen() {
             <Text style={styles.standingsRank}>#{index + 1}</Text>
             <View style={styles.standingsInfo}>
               <Text style={styles.standingsName}>{team.name}</Text>
-              <Text style={styles.standingsRecord}>{team.record} • Conference</Text>
+              <Text style={styles.standingsRecord}>
+                Conf {team.conference} • Overall {team.overall}
+              </Text>
             </View>
-            <StatusPill label="Basketball" tone="info" />
+            <StatusPill label={team.streak} tone="neutral" />
           </Card>
         ))}
       </View>
@@ -224,6 +268,53 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 12,
     marginTop: 8
+  },
+  daySelector: {
+    gap: 10,
+    paddingRight: 20,
+    marginBottom: 12
+  },
+  dayChip: {
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    backgroundColor: colors.surface
+  },
+  dayChipActive: {
+    borderColor: colors.accentStrong,
+    backgroundColor: colors.accentSoft
+  },
+  dayChipText: {
+    color: colors.textSecondary,
+    fontSize: 12,
+    fontWeight: "600"
+  },
+  dayChipTextActive: {
+    color: colors.accentStrong
+  },
+  scheduleCard: {
+    gap: 8
+  },
+  scheduleHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  scheduleTime: {
+    color: colors.textSecondary,
+    fontSize: 12,
+    fontWeight: "600"
+  },
+  scheduleMatchup: {
+    color: colors.textPrimary,
+    fontSize: 16,
+    fontWeight: "700"
+  },
+  scheduleMatchupSecondary: {
+    color: colors.textSecondary,
+    fontSize: 13
   },
   primaryButton: {
     backgroundColor: colors.accentStrong,
