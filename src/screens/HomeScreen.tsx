@@ -5,12 +5,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
 import {
+  basketballTeams,
   featuredGames,
   headlines,
   latestScores,
   liveNow,
-  quickActions,
-  sports
+  quickActions
 } from "../data/mock";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
@@ -20,6 +20,9 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<NavigationProp>();
+  const getWins = (record: string) => Number(record.split("-")[0]) || 0;
+  const standings = [...basketballTeams].sort((a, b) => getWins(b.record) - getWins(a.record));
+  const formatDetails = (details: string[]) => details.filter((detail) => detail && detail !== "-").join(" • ");
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -127,17 +130,49 @@ export default function HomeScreen() {
         ))}
       </View>
 
-      <SectionHeader title="Sports Hub" />
-      <View style={styles.quickLinks}>
-        {sports.map((sport) => (
-          <Pressable
-            key={sport.id}
-            style={styles.quickLink}
-            onPress={() => navigation.navigate("SportDetail", { sportId: sport.id })}
-          >
-            <Text style={styles.quickLinkText}>{sport.name}</Text>
-            <Text style={styles.quickLinkMeta}>{sport.status}</Text>
-          </Pressable>
+      <SectionHeader title="Standings Snapshot" actionLabel="Full table" />
+      <View style={styles.cardStack}>
+        {standings.slice(0, 5).map((team, index) => (
+          <Card key={team.id} style={styles.standingsCard}>
+            <Text style={styles.standingsRank}>#{index + 1}</Text>
+            <View style={styles.standingsInfo}>
+              <Text style={styles.standingsName}>{team.name}</Text>
+              <Text style={styles.standingsRecord}>{team.record} • Conference</Text>
+            </View>
+            <StatusPill label="Basketball" tone="info" />
+          </Card>
+        ))}
+      </View>
+
+      <SectionHeader title="Team Rosters" actionLabel="All teams" />
+      <View style={styles.cardStack}>
+        {basketballTeams.map((team) => (
+          <Card key={team.id} style={styles.rosterCard}>
+            <View style={styles.rosterHeader}>
+              <View>
+                <Text style={styles.rosterTitle}>{team.name}</Text>
+                <Text style={styles.rosterMeta}>{team.record} • Varsity</Text>
+              </View>
+              <StatusPill label={`${team.roster.length} players`} tone="neutral" />
+            </View>
+            <View style={styles.rosterGrid}>
+              {team.roster.slice(0, 3).map((player) => (
+                <View key={`${team.id}-${player.number}`} style={styles.rosterPlayer}>
+                  <Text style={styles.rosterNumber}>#{player.number}</Text>
+                  <Text style={styles.rosterName}>{player.name}</Text>
+                  <Text style={styles.rosterDetails}>
+                    {formatDetails([player.grade, player.position, player.height])}
+                  </Text>
+                </View>
+              ))}
+            </View>
+            <Pressable
+              style={styles.inlineButton}
+              onPress={() => navigation.navigate("SchoolDetail", { schoolId: team.id })}
+            >
+              <Text style={styles.inlineButtonText}>View full roster</Text>
+            </Pressable>
+          </Card>
         ))}
       </View>
     </ScrollView>
@@ -337,26 +372,69 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: 12
   },
-  quickLinks: {
+  standingsCard: {
     flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10
+    alignItems: "center",
+    gap: 12
   },
-  quickLink: {
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 999,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    gap: 2
+  standingsRank: {
+    color: colors.accentStrong,
+    fontSize: 16,
+    fontWeight: "700",
+    width: 28
   },
-  quickLinkText: {
+  standingsInfo: {
+    flex: 1
+  },
+  standingsName: {
     color: colors.textPrimary,
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "600"
   },
-  quickLinkMeta: {
+  standingsRecord: {
     color: colors.textSecondary,
-    fontSize: 10
+    fontSize: 12
+  },
+  rosterCard: {
+    gap: 12
+  },
+  rosterHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 12
+  },
+  rosterTitle: {
+    color: colors.textPrimary,
+    fontSize: 16,
+    fontWeight: "700"
+  },
+  rosterMeta: {
+    color: colors.textSecondary,
+    fontSize: 12
+  },
+  rosterGrid: {
+    gap: 10
+  },
+  rosterPlayer: {
+    backgroundColor: colors.surfaceHighlight,
+    borderRadius: 12,
+    padding: 10
+  },
+  rosterNumber: {
+    color: colors.accentStrong,
+    fontSize: 12,
+    fontWeight: "700"
+  },
+  rosterName: {
+    color: colors.textPrimary,
+    fontSize: 14,
+    fontWeight: "600",
+    marginTop: 2
+  },
+  rosterDetails: {
+    color: colors.textSecondary,
+    fontSize: 11,
+    marginTop: 2
   }
 });

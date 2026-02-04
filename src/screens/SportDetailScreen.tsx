@@ -3,7 +3,7 @@ import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
-import { featuredGames, latestScores } from "../data/mock";
+import { basketballTeams, featuredGames, latestScores } from "../data/mock";
 import Card from "../components/Card";
 import SectionHeader from "../components/SectionHeader";
 import StatusPill from "../components/StatusPill";
@@ -54,12 +54,20 @@ export default function SportDetailScreen() {
         ))}
       </View>
 
-      <SectionHeader title="Standings" actionLabel="Conference" />
-      <Card style={styles.card}>
-        <Text style={styles.cardTitle}>1. Kimberly • 4-0</Text>
-        <Text style={styles.cardMeta}>2. Appleton North • 3-1</Text>
-        <Text style={styles.cardMeta}>3. Neenah • 3-1</Text>
-      </Card>
+      <SectionHeader title="Teams" actionLabel="Rosters" />
+      <View style={styles.stack}>
+        {basketballTeams.map((team) => (
+          <Pressable key={team.id} onPress={() => navigation.navigate("SchoolDetail", { schoolId: team.id })}>
+            <Card style={styles.card}>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>{team.name}</Text>
+                <StatusPill label={team.record} tone="info" />
+              </View>
+              <Text style={styles.cardMeta}>{team.roster.length} players • Varsity</Text>
+            </Card>
+          </Pressable>
+        ))}
+      </View>
     </ScrollView>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
-import { schools } from "../data/mock";
+import { basketballTeams, schools } from "../data/mock";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 
@@ -24,7 +24,9 @@ export default function SchoolsScreen() {
             <Card style={styles.card}>
               <Text style={styles.logo}>{school.logo}</Text>
               <Text style={styles.name}>{school.name}</Text>
-              <Text style={styles.meta}>View teams & schedules</Text>
+              <Text style={styles.meta}>
+                {basketballTeams.find((team) => team.id === school.id)?.record ?? "0-0"} • Varsity
+              </Text>
             </Card>
           </Pressable>
         ))}

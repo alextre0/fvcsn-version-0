@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
-import { sports } from "../data/mock";
+import { basketballTeams, sports } from "../data/mock";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 import StatusPill from "../components/StatusPill";
@@ -27,7 +27,9 @@ export default function SportsScreen() {
                 <Text style={styles.name}>{sport.name}</Text>
                 <StatusPill label={sport.status} tone={sport.status === "Off-season" ? "neutral" : "success"} />
               </View>
-              <Text style={styles.meta}>{sport.season} season • Schedule • Scores</Text>
+              <Text style={styles.meta}>
+                {sport.season} season • {basketballTeams.length} varsity rosters
+              </Text>
             </Card>
           </Pressable>
         ))}

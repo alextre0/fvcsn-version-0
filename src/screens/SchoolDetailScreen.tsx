@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import { colors } from "../theme/colors";
-import { newsPosts, latestScores, sports, schools } from "../data/mock";
+import { basketballTeams, latestScores, newsPosts, schools, sports } from "../data/mock";
 import Card from "../components/Card";
 import SectionHeader from "../components/SectionHeader";
 
@@ -11,6 +11,8 @@ type ScreenRouteProp = RouteProp<RootStackParamList, "SchoolDetail">;
 export default function SchoolDetailScreen() {
   const route = useRoute<ScreenRouteProp>();
   const school = schools.find((item) => item.id === route.params.schoolId);
+  const team = basketballTeams.find((item) => item.id === route.params.schoolId);
+  const formatDetails = (details: string[]) => details.filter((detail) => detail && detail !== "-").join(" • ");
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -22,11 +24,27 @@ export default function SchoolDetailScreen() {
         </View>
       </View>
 
-      <SectionHeader title="Teams" actionLabel="All sports" />
+      <SectionHeader title="Teams" actionLabel="Varsity" />
       <View style={styles.wrap}>
         {sports.map((sport) => (
           <Card key={sport.id} style={styles.pill}>
             <Text style={styles.pillText}>{sport.name}</Text>
+          </Card>
+        ))}
+      </View>
+
+      <SectionHeader title="Roster" actionLabel={`${team?.roster.length ?? 0} players`} />
+      <View style={styles.stack}>
+        {team?.roster.map((player) => (
+          <Card key={`${route.params.schoolId}-${player.number}`} style={styles.rosterCard}>
+            <View style={styles.rosterHeader}>
+              <Text style={styles.rosterNumber}>#{player.number}</Text>
+              <Text style={styles.rosterName}>{player.name}</Text>
+              <Text style={styles.rosterGrade}>{player.grade}</Text>
+            </View>
+            <Text style={styles.rosterMeta}>
+              {formatDetails([player.position, player.height, player.weight])}
+            </Text>
           </Card>
         ))}
       </View>
@@ -114,6 +132,34 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
   scoreStatus: {
+    color: colors.textSecondary,
+    fontSize: 12
+  },
+  rosterCard: {
+    gap: 6
+  },
+  rosterHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8
+  },
+  rosterNumber: {
+    color: colors.accentStrong,
+    fontWeight: "700",
+    fontSize: 14,
+    width: 32
+  },
+  rosterName: {
+    color: colors.textPrimary,
+    fontSize: 14,
+    fontWeight: "600",
+    flex: 1
+  },
+  rosterGrade: {
+    color: colors.textSecondary,
+    fontSize: 12
+  },
+  rosterMeta: {
     color: colors.textSecondary,
     fontSize: 12
   },
